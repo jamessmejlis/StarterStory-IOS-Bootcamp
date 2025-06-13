@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function Onboarding2() {
+export default function OnboardingEthos() {
   const router = useRouter();
   return (
     <View style={styles.container}>
@@ -10,11 +10,11 @@ export default function Onboarding2() {
       <View style={styles.kywBox}>
         <Text style={styles.kywText}>AN</Text>
       </View>
-      <Text style={styles.title}>Problem{"\n"}Statement</Text>
-      <Text style={styles.subtitle}>Simple clear statement{"\n"}that doesn't confuse</Text>
+      <Text style={styles.title}>Drop in a fact here</Text>
+      <Text style={styles.subtitle}>Demonstrate your expertise and or social trust towards your app</Text>
       <View style={styles.flexGrow} />
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/onboarding3')}>
-        <Text style={styles.buttonText}>Next</Text>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/personalization')}>
+        <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
       <View style={styles.spacer} />
     </View>

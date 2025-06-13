@@ -11,3 +11,11 @@ export interface Session {
 }
 
 export const sessionsAtom = atomWithStorage<Session[]>('sessions', []);
+
+export interface PersonalizationAnswers {
+  q1: string;
+  q2: string;
+  q3: string[];
+}
+
+export const personalizationAtom = atomWithStorage<PersonalizationAnswers | null>('personalization', null);
