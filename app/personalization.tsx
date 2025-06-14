@@ -14,7 +14,7 @@ export default function Personalization() {
   };
 
   const handleContinue = () => {
-    router.push({ pathname: '/PersonalizingScreen', params: { q1, q2, q3 } });
+    router.push({ pathname: '/personalizingscreen', params: { q1, q2, q3 } });
   };
 
   return (

@@ -10,8 +10,9 @@ export default function Onboarding1() {
       <View style={styles.kywBox}>
         <Text style={styles.kywText}>AN</Text>
       </View>
+            <View style={styles.flexGrow} />
       <Text style={styles.title}>Problem{"\n"}Statement</Text>
-      <Text style={styles.subtitle}>Simple clear statement{"\n"}that doesn't confuse</Text>
+      <Text style={styles.subtitle}>Simple clear statement{"\n"}that does not confuse</Text>
       <View style={styles.flexGrow} />
       <TouchableOpacity style={styles.button} onPress={() => router.push('/onboarding2')}>
         <Text style={styles.buttonText}>Next</Text>

@@ -10,6 +10,7 @@ export default function OnboardingPathos() {
       <View style={styles.kywBox}>
         <Text style={styles.kywText}>AN</Text>
       </View>
+      <View style={styles.flexGrow} />
       <Text style={styles.title}>SHOW THE Emotion And Amplify it</Text>
       <Text style={styles.subtitle}>Maybe an image? Maybe something that really triggers that emotion?</Text>
       <View style={styles.flexGrow} />

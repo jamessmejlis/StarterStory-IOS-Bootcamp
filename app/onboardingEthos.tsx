@@ -10,6 +10,7 @@ export default function OnboardingEthos() {
       <View style={styles.kywBox}>
         <Text style={styles.kywText}>AN</Text>
       </View>
+      <View style={styles.flexGrow} />
       <Text style={styles.title}>Drop in a fact here</Text>
       <Text style={styles.subtitle}>Demonstrate your expertise and or social trust towards your app</Text>
       <View style={styles.flexGrow} />

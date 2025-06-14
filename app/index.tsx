@@ -9,12 +9,12 @@ export default function Start() {
   const router = useRouter();
   return (
     <View style={styles.container}>
-      <View style={styles.spacer} />
+      <View style={styles.flexGrow} />
       <View style={styles.kywBox}>
-        <Text style={styles.kywText}>KYW</Text>
+        <Text style={styles.kywText}>AN</Text>
       </View>
-      <Text style={styles.title}>Know Your{"\n"}Worth</Text>
-      <Text style={styles.subtitle}>A relationship companion</Text>
+      <Text style={styles.title}>App Name</Text>
+      <Text style={styles.subtitle}>A one liner for your app</Text>
       <View style={styles.flexGrow} />
       <TouchableOpacity style={styles.button} onPress={() => router.push(nextPath)}>
         <Text style={styles.buttonText}>Get Started</Text>

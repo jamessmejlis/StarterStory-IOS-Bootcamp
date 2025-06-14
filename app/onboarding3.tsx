@@ -9,18 +9,19 @@ export default function Onboarding3() {
   const router = useRouter();
   return (
     <View style={styles.container}>
-      <View style={styles.spacer} />
-      <View style={styles.kywBox}>
-        <Text style={styles.kywText}>AN</Text>
-      </View>
-      <Text style={styles.title}>Problem{"\n"}Statement</Text>
-      <Text style={styles.subtitle}>Simple clear statement{"\n"}that doesn't confuse</Text>
-      <View style={styles.flexGrow} />
-      <TouchableOpacity style={styles.button} onPress={() => router.push(nextPath)}>
-        <Text style={styles.buttonText}>Next</Text>
-      </TouchableOpacity>
-      <View style={styles.spacer} />
+    <View style={styles.spacer} />
+    <View style={styles.kywBox}>
+      <Text style={styles.kywText}>AN</Text>
     </View>
+          <View style={styles.flexGrow} />
+    <Text style={styles.title}>Our{"\n"}Solution</Text>
+    <Text style={styles.subtitle}>Simple clear statement{"\n"}that does not confuse</Text>
+    <View style={styles.flexGrow} />
+    <TouchableOpacity style={styles.button} onPress={() => router.push(nextPath)}>
+      <Text style={styles.buttonText}>Next</Text>
+    </TouchableOpacity>
+    <View style={styles.spacer} />
+  </View>
   );
 }
 
