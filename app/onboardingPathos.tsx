@@ -1,35 +1,148 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function OnboardingPathos() {
   const router = useRouter();
   return (
-    <View style={styles.container}>
-      <View style={styles.spacer} />
-      <View style={styles.kywBox}>
-        <Text style={styles.kywText}>AN</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.topRow}>
+          <Image source={require('../assets/images/icon.png')} style={styles.logo} />
+          <View style={styles.progressContainer}>
+            <Text style={styles.progress}>Onboarding </Text>
+            <Text style={styles.progressPercent}>95%</Text>
+          </View>
+        </View>
+        
+        <View style={styles.contentContainer}>
+          <View style={styles.messageContainer}>
+            <Text style={styles.message}>
+              You&apos;re not crazy.{"\n"}You&apos;re just unheard.
+            </Text>
+          </View>
+          
+          <Image source={require('../assets/images/illustration_4.png')} style={styles.illustration} />
+          
+          <View style={styles.truthCard}>
+            <Text style={styles.cardTitle}>🍵 The Truth About Our App</Text>
+            <Text style={styles.cardText}>
+              Our app focuses on helping you and your partner stay calm, seen, and connected.
+            </Text>
+            <Text style={styles.cardSubtext}>
+              Even when things get hard. At your pace. At your privacy.
+            </Text>
+          </View>
+        </View>
+        
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/personalization')}>
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.flexGrow} />
-      <Text style={styles.title}>SHOW THE Emotion And Amplify it</Text>
-      <Text style={styles.subtitle}>Maybe an image? Maybe something that really triggers that emotion?</Text>
-      <View style={styles.flexGrow} />
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/onboarding3')}>
-        <Text style={styles.buttonText}>Continue</Text>
-      </TouchableOpacity>
-      <View style={styles.spacer} />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: '#fff' },
-  spacer: { height: 40 },
-  kywBox: { backgroundColor: '#7CFFB2', borderRadius: 32, paddingVertical: 24, paddingHorizontal: 36, marginBottom: 32, borderWidth: 1, borderColor: '#222' },
-  kywText: { fontSize: 32, fontWeight: 'bold', color: '#222', textAlign: 'center' },
-  title: { fontSize: 48, fontWeight: 'bold', marginBottom: 12, textAlign: 'center', color: '#111' },
-  subtitle: { fontSize: 28, color: '#111', marginBottom: 32, textAlign: 'center' },
-  flexGrow: { flex: 1 },
-  button: { backgroundColor: '#000', paddingVertical: 20, paddingHorizontal: 48, borderRadius: 32, marginBottom: 12, width: '100%' },
-  buttonText: { color: '#fff', fontSize: 32, fontWeight: 'bold', textAlign: 'center' },
+  safeArea: { flex: 1, backgroundColor: '#fff' },
+  container: { 
+    flex: 1, 
+    paddingHorizontal: 24, 
+    paddingTop: 20,
+    paddingBottom: 40,
+    backgroundColor: '#fff' 
+  },
+  topRow: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between', 
+    width: '100%', 
+    marginBottom: 30 
+  },
+  logo: { 
+    width: 50, 
+    height: 50, 
+    resizeMode: 'contain' 
+  },
+  progressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  progress: { 
+    fontSize: 16, 
+    color: '#000', 
+    fontWeight: '600' 
+  },
+  progressPercent: {
+    fontSize: 16,
+    color: '#999',
+    fontWeight: '400'
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  messageContainer: {
+    backgroundColor: '#F5F5F0',
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    marginBottom: 30,
+    alignSelf: 'stretch'
+  },
+  message: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#111',
+    lineHeight: 30
+  },
+  illustration: { 
+    width: '100%', 
+    maxWidth: 280, 
+    height: 240, 
+    resizeMode: 'contain',
+    marginBottom: 30 
+  },
+  truthCard: { 
+    backgroundColor: '#6366F1', 
+    borderRadius: 16, 
+    padding: 24, 
+    width: '100%',
+    alignSelf: 'stretch'
+  },
+  cardTitle: { 
+    fontSize: 18, 
+    fontWeight: 'bold', 
+    color: '#fff', 
+    marginBottom: 16 
+  },
+  cardText: { 
+    fontSize: 16, 
+    color: '#fff', 
+    marginBottom: 12, 
+    lineHeight: 22,
+    fontWeight: '400'
+  },
+  cardSubtext: { 
+    fontSize: 16, 
+    color: '#fff', 
+    lineHeight: 22,
+    fontWeight: '400'
+  },
+  button: { 
+    backgroundColor: '#000', 
+    paddingVertical: 18, 
+    paddingHorizontal: 48, 
+    borderRadius: 25, 
+    width: '100%',
+    marginTop: 20
+  },
+  buttonText: { 
+    color: '#fff', 
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    textAlign: 'center' 
+  },
 });

@@ -2,11 +2,11 @@ import { PersonalizationAnswers, personalizationAtom } from '@/lib/atoms';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSetAtom } from 'jotai';
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Animated, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 const progressMessages = [
-  'figuring out the first question to ask you',
-  'analyzing your answers',
+  'determining your compatibility type',
+  'analyzing your relationship patterns',
   'personalizing your experience',
   'almost done...'
 ];
@@ -63,29 +63,38 @@ export default function PersonalizingScreen() {
   }, [q1, q2, q3, setPersonalization, router, progressAnim]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Personalizing</Text>
-      <Text style={styles.subtitle}>your first experience</Text>
-      <View style={styles.kywBox}>
-        <Text style={styles.kywText}>AN</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Generating</Text>
+        <Text style={styles.subtitle}>your first experience</Text>
+        
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/images/icon.png')} style={styles.logo} />
+        </View>
+        
+        <Text style={styles.progress}>{progress}% complete</Text>
+        <Text style={styles.progressSub}>{progressMessages[messageIndex]}</Text>
+        
+        <View style={styles.flexGrow} />
+        
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>Please Wait</Text>
+        </View>
       </View>
-      <Text style={styles.progress}>{progress}% complete</Text>
-      <Text style={styles.progressSub}>{progressMessages[messageIndex]}</Text>
-      <View style={styles.button}>
-        <Text style={styles.buttonText}>Please Wait</Text>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex:1, justifyContent:'center', alignItems:'center', padding:24, backgroundColor:'#fff' },
-  title: { fontSize:40, fontWeight:'bold', marginBottom:0, textAlign:'center', color:'#111' },
-  subtitle: { fontSize:28, color:'#111', marginBottom:32, textAlign:'center', fontWeight:'400' },
-  kywBox: { backgroundColor: '#7CFFB2', borderRadius: 32, paddingVertical: 24, paddingHorizontal: 36, marginVertical: 32, borderWidth: 1, borderColor: '#222' },
-  kywText: { fontSize: 32, fontWeight: 'bold', color: '#222', textAlign: 'center' },
-  progress: { fontSize: 28, color: '#ccc', marginTop: 32, marginBottom: 8, textAlign: 'center' },
-  progressSub: { fontSize: 22, color: '#ccc', marginBottom: 32, textAlign: 'center' },
-  button: { backgroundColor:'#000', paddingVertical:20, paddingHorizontal:48, borderRadius:32, marginTop:24, width:'100%', alignItems:'center', marginBottom:24 },
-  buttonText: { color:'#fff', fontSize:32, fontWeight:'bold', textAlign:'center' },
+  safeArea: { flex: 1, backgroundColor: '#fff' },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: '#fff' },
+  title: { fontSize: 36, fontWeight: 'bold', marginBottom: 0, textAlign: 'center', color: '#111', marginTop: 0 },
+  subtitle: { fontSize: 24, color: '#111', marginBottom: 60, textAlign: 'center', fontWeight: '400' },
+  logoContainer: { marginVertical: 60, alignItems: 'center' },
+  logo: { width: 120, height: 120, resizeMode: 'contain' },
+  progress: { fontSize: 24, color: '#ccc', marginTop: 40, marginBottom: 12, textAlign: 'center', fontWeight: '500' },
+  progressSub: { fontSize: 18, color: '#ccc', marginBottom: 20, textAlign: 'center' },
+  flexGrow: { flex: 1 },
+  button: { backgroundColor: '#000', paddingVertical: 20, paddingHorizontal: 48, borderRadius: 32, marginTop: 20, width: '100%', alignItems: 'center', marginBottom: 12 },
+  buttonText: { color: '#fff', fontSize: 32, fontWeight: 'bold', textAlign: 'center' },
 }); 

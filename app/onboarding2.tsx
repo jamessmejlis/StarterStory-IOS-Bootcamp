@@ -1,35 +1,125 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Onboarding2() {
   const router = useRouter();
   return (
-    <View style={styles.container}>
-      <View style={styles.spacer} />
-      <View style={styles.kywBox}>
-        <Text style={styles.kywText}>AN</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.topRow}>
+          <Image source={require('../assets/images/icon.png')} style={styles.logo} />
+          <View style={styles.progressContainer}>
+            <Text style={styles.progress}>Onboarding </Text>
+            <Text style={styles.progressPercent}>65%</Text>
+          </View>
+        </View>
+        
+        <View style={styles.contentContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>
+              <Text style={styles.highlight}>Shitty Communication</Text>{"\n"}
+              On LOOP.
+            </Text>
+          </View>
+          
+          <Text style={styles.subtitle}>
+            Current solutions ={"\n"}keep emotions locked in{"\n"}and tossed out in{"\n"}arguments.
+          </Text>
+          
+          <Image source={require('../assets/images/illustration_2.png')} style={styles.illustration} />
+        </View>
+        
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/onboarding3')}>
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
       </View>
-            <View style={styles.flexGrow} />
-      <Text style={styles.title}>Current{"\n"}Solutions</Text>
-      <Text style={styles.subtitle}>Simple clear statement{"\n"}that does not confuse</Text>
-      <View style={styles.flexGrow} />
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/onboarding3')}>
-        <Text style={styles.buttonText}>Next</Text>
-      </TouchableOpacity>
-      <View style={styles.spacer} />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: '#fff' },
-  spacer: { height: 40 },
-  kywBox: { backgroundColor: '#7CFFB2', borderRadius: 32, paddingVertical: 24, paddingHorizontal: 36, marginBottom: 32, borderWidth: 1, borderColor: '#222' },
-  kywText: { fontSize: 32, fontWeight: 'bold', color: '#222', textAlign: 'center' },
-  title: { fontSize: 48, fontWeight: 'bold', marginBottom: 12, textAlign: 'center', color: '#111' },
-  subtitle: { fontSize: 28, color: '#111', marginBottom: 32, textAlign: 'center' },
-  flexGrow: { flex: 1 },
-  button: { backgroundColor: '#000', paddingVertical: 20, paddingHorizontal: 48, borderRadius: 32, marginBottom: 12, width: '100%' },
-  buttonText: { color: '#fff', fontSize: 32, fontWeight: 'bold', textAlign: 'center' },
+  safeArea: { flex: 1, backgroundColor: '#fff' },
+  container: { 
+    flex: 1, 
+    paddingHorizontal: 24, 
+    paddingTop: 20,
+    paddingBottom: 40,
+    backgroundColor: '#fff' 
+  },
+  topRow: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between', 
+    width: '100%', 
+    marginBottom: 30 
+  },
+  logo: { 
+    width: 50, 
+    height: 50, 
+    resizeMode: 'contain' 
+  },
+  progressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  progress: { 
+    fontSize: 16, 
+    color: '#000', 
+    fontWeight: '600' 
+  },
+  progressPercent: {
+    fontSize: 16,
+    color: '#999',
+    fontWeight: '400'
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  titleContainer: {
+    alignItems: 'center',
+    marginBottom: 30
+  },
+  title: { 
+    fontSize: 32, 
+    fontWeight: 'bold', 
+    textAlign: 'center', 
+    color: '#111', 
+    lineHeight: 38
+  },
+  subtitle: { 
+    fontSize: 20, 
+    color: '#666', 
+    textAlign: 'center',
+    lineHeight: 26,
+    fontWeight: '400',
+    marginBottom: 40
+  },
+  illustration: { 
+    width: '100%', 
+    maxWidth: 300, 
+    height: 280, 
+    resizeMode: 'contain'
+  },
+  button: { 
+    backgroundColor: '#000', 
+    paddingVertical: 18, 
+    paddingHorizontal: 48, 
+    borderRadius: 25, 
+    width: '100%' 
+  },
+  buttonText: { 
+    color: '#fff', 
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    textAlign: 'center' 
+  },
+  highlight: { 
+    backgroundColor: '#E6FF7C', 
+    paddingHorizontal: 4, 
+    paddingVertical: 2,
+    borderRadius: 4
+  },
 });
