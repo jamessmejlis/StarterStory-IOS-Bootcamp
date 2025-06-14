@@ -18,12 +18,18 @@ export default function RootLayout() {
       setIsSignedIn(!!data.session && !!data.session.user);
     };
     checkSession();
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsSignedIn(!!session && !!session.user);
-      !!session && !!session.user && setTimeout(() => {
-        router.push('/')
-        router.push('/(tabs)')
-      })
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      const isAuthenticated = !!session && !!session.user;
+      console.log('Auth state change:', event, 'isAuthenticated:', isAuthenticated);
+      
+      // Update state first
+      setIsSignedIn(isAuthenticated);
+      
+      // Only handle automatic navigation for sign-in
+      // Sign-out navigation is handled manually in components
+      if (event === 'SIGNED_IN' && isAuthenticated) {
+        router.replace('/(tabs)');
+      }
     });
     return () => {
       listener?.subscription.unsubscribe();
@@ -37,28 +43,29 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <Stack
-        initialRouteName={isSignedIn ? '(tabs)' : 'index'}
         screenOptions={{ headerShown: false }}
       >
-        {isSignedIn
-          ? [
-              <Stack.Screen key="tabs" name="(tabs)" />,
-              <Stack.Screen key="not-found" name="+not-found" />
-            ]
-          : [
-              <Stack.Screen key="index" name="index" />,
-              <Stack.Screen key="onboarding1" name="onboarding1" />,
-              <Stack.Screen key="onboarding2" name="onboarding2" />,
-              <Stack.Screen key="onboarding3" name="onboarding3" />,
-              <Stack.Screen key="onboardingPathos" name="onboardingPathos" />,
-              <Stack.Screen key="onboardingEthos" name="onboardingEthos" />,
-              <Stack.Screen key="onboardingLogos" name="onboardingLogos" />,
-              <Stack.Screen key="personalization" name="personalization" />,
-              <Stack.Screen key="personalizingscreen" name="personalizingscreen" />,
-              <Stack.Screen key="signup" name="signup" />,
-              <Stack.Screen key="login" name="login" />,
-              <Stack.Screen key="not-found" name="+not-found" />
-            ]}
+        {isSignedIn ? (
+          <>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="+not-found" />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="onboarding1" />
+            <Stack.Screen name="onboarding2" />
+            <Stack.Screen name="onboarding3" />
+            <Stack.Screen name="onboardingPathos" />
+            <Stack.Screen name="onboardingEthos" />
+            <Stack.Screen name="onboardingLogos" />
+            <Stack.Screen name="personalization" />
+            <Stack.Screen name="personalizingscreen" />
+            <Stack.Screen name="signup" />
+            <Stack.Screen name="login" />
+            <Stack.Screen name="+not-found" />
+          </>
+        )}
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
