@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Onboarding() {
   const router = useRouter();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Know Your Worth</Text>
-      <Text style={styles.subtitle}>A relationship companion</Text>
+      <Text style={styles.title}>App Name</Text>
+      <Text style={styles.subtitle}>One Liner For Your App</Text>
       <TouchableOpacity style={styles.button} onPress={() => router.push('/personalization')}>
         <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>

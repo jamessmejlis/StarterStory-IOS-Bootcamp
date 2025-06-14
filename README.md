@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
+# Starter Story Build Course Boilerplate (iOS + Cursor Bootcamp)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is the official boilerplate for the **Starter Story Build Course** (iOS + Cursor Bootcamp). It provides a modern Expo + Expo Router + Supabase + Jotai starter template for students to learn and build production-quality mobile apps.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Onboarding Flow Example:** Multi-step onboarding with explainer screens, personalization questions, and animated transitions.
+- **Authentication Example:** Sign up and login with Supabase Auth. Auth state persists and controls navigation.
+- **Personalization Example:** User answers are stored with Jotai and used to demonstrate global state management.
+- **Modern UI:** Consistent, mobile-friendly design with custom components and theming.
+- **File-based Routing:** Easy navigation and screen management with Expo Router.
 
+## Getting Started
+
+1. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. **Start the app**
    ```bash
    npx expo start
    ```
+   - Open in iOS Simulator, Android Emulator, or Expo Go as prompted.
 
-In the output, you'll find options to open the app in a
+3. **Configure Supabase**
+   - Add your Supabase project URL and anon key to `lib/supabase.ts` if not already set.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- `app/` — All screens and navigation (file-based routing)
+- `app/_layout.tsx` — Root layout, handles auth state and navigation stack
+- `app/(tabs)/` — Main app tabs (shown when signed in)
+- `app/onboarding*.tsx` — Onboarding screens (example)
+- `app/personalization.tsx` — Personalization questions (example)
+- `app/PersonalizingScreen.tsx` — Animated personalizing screen (example)
+- `app/signup.tsx`, `app/login.tsx` — Auth screens (example)
+- `lib/atoms.ts` — Jotai atoms for global state
+- `lib/supabase.ts` — Supabase client setup
 
-## Get a fresh project
+## State Management
+- **Jotai** is used for global state (e.g., storing personalization answers as an example).
+- **Supabase Auth** persists user sessions and controls which navigation stack is shown.
 
-When you're ready, run:
+## Customization
+- Edit screens in `app/` to change onboarding, questions, or main app content.
+- Update styles in each screen's `StyleSheet` for branding or assignments.
 
-```bash
-npm run reset-project
-```
+## Learn More
+- [Expo documentation](https://docs.expo.dev/)
+- [Expo Router docs](https://expo.github.io/router/docs/)
+- [Supabase docs](https://supabase.com/docs)
+- [Jotai docs](https://jotai.org/docs)
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Built for the Starter Story Build Course (iOS + Cursor Bootcamp) 🚀
