@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function Personalization() {
   const router = useRouter();
@@ -18,61 +18,71 @@ export default function Personalization() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-      <View style={styles.spacer} />
-      <View style={styles.spacer} />
-      <View style={styles.kywBox}>
-        <Text style={styles.kywText}>AN</Text>
-      </View>
-      <Text style={styles.title}>Lets personalize</Text>
-      <Text style={styles.subtitle}>your account</Text>
-
-      <Text style={styles.question}>Question 1<Text style={styles.required}>*</Text></Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Answer to question 1"
-        placeholderTextColor="#bbb"
-        value={q1}
-        onChangeText={setQ1}
-      />
-
-      <Text style={styles.question}>Question 2<Text style={styles.required}>*</Text></Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Answer to question 2"
-        placeholderTextColor="#bbb"
-        value={q2}
-        onChangeText={setQ2}
-      />
-
-      <Text style={styles.question}>Question 3<Text style={styles.required}>*</Text></Text>
-      {choices.map(choice => (
-        <TouchableOpacity
-          key={choice}
-          style={[styles.choice, q3.includes(choice) && styles.choiceSelected]}
-          onPress={() => toggleChoice(choice)}
-          activeOpacity={0.8}
-        >
-          <View style={[styles.checkbox, q3.includes(choice) && styles.checkboxSelected]}>
-            {q3.includes(choice) ? <View style={styles.checkboxInner} /> : null}
-          </View>
-          <Text style={[styles.choiceText, q3.includes(choice) && styles.choiceTextSelected]}>{choice}</Text>
+    <KeyboardAvoidingView 
+      style={styles.keyboardAvoidingView} 
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView 
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <Text style={styles.backButtonText}>{'< Back'}</Text>
         </TouchableOpacity>
-      ))}
+        <View style={styles.spacer} />
+        <View style={styles.spacer} />
+        <Image source={require('../assets/images/icon.png')} style={styles.logo} resizeMode="contain" />
+        <Text style={styles.title}>Lets personalize</Text>
+        <Text style={styles.subtitle}>your account</Text>
 
-      <TouchableOpacity style={styles.button} onPress={handleContinue} activeOpacity={0.8}>
-        <Text style={styles.buttonText}>Continue</Text>
-      </TouchableOpacity>
-      <View style={styles.spacer} />
-    </ScrollView>
+        <Text style={styles.question}>Question 1<Text style={styles.required}>*</Text></Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Answer to question 1"
+          placeholderTextColor="#bbb"
+          value={q1}
+          onChangeText={setQ1}
+        />
+
+        <Text style={styles.question}>Question 2<Text style={styles.required}>*</Text></Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Answer to question 2"
+          placeholderTextColor="#bbb"
+          value={q2}
+          onChangeText={setQ2}
+        />
+
+        <Text style={styles.question}>Question 3<Text style={styles.required}>*</Text></Text>
+        {choices.map(choice => (
+          <TouchableOpacity
+            key={choice}
+            style={[styles.choice, q3.includes(choice) && styles.choiceSelected]}
+            onPress={() => toggleChoice(choice)}
+            activeOpacity={0.8}
+          >
+            <View style={[styles.checkbox, q3.includes(choice) && styles.checkboxSelected]}>
+              {q3.includes(choice) ? <View style={styles.checkboxInner} /> : null}
+            </View>
+            <Text style={[styles.choiceText, q3.includes(choice) && styles.choiceTextSelected]}>{choice}</Text>
+          </TouchableOpacity>
+        ))}
+
+        <TouchableOpacity style={styles.button} onPress={handleContinue} activeOpacity={0.8}>
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
+        <View style={styles.spacer} />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 24, backgroundColor: '#fff' },
+  keyboardAvoidingView: { flex: 1, backgroundColor: '#fff' },
+  scrollContainer: { flexGrow: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 24, paddingTop: 60, paddingBottom: 40 },
   spacer: { height: 24 },
-  kywBox: { backgroundColor: '#7CFFB2', borderRadius: 20, paddingVertical: 14, paddingHorizontal: 24, marginBottom: 24, borderWidth: 1, borderColor: '#222' },
-  kywText: { fontSize: 20, fontWeight: 'bold', color: '#222', textAlign: 'center' },
+  logo: { width: 70, height: 70, marginBottom: 16 },
   title: { fontSize: 32, fontWeight: 'bold', marginBottom: 0, textAlign: 'center', color: '#111', marginTop: 0 },
   subtitle: { fontSize: 20, color: '#111', marginBottom: 24, textAlign: 'center', fontWeight: '400' },
   question: { fontSize: 18, fontWeight: 'bold', marginBottom: 8, color: '#111', alignSelf: 'flex-start' },
@@ -87,4 +97,6 @@ const styles = StyleSheet.create({
   choiceTextSelected: { color: '#222', fontWeight: 'bold' },
   button: { backgroundColor: '#000', paddingVertical: 14, paddingHorizontal: 32, borderRadius: 18, marginTop: 18, width: '100%', alignItems: 'center', marginBottom: 18 },
   buttonText: { color: '#fff', fontSize: 20, fontWeight: 'bold', textAlign: 'center' },
+  backButton: { position: 'absolute', top: 72, left: 12, padding: 6, zIndex: 10 }, // Adjusted top value for alignment
+  backButtonText: { fontSize: 15, color: '#111', fontFamily: 'SpaceMono' },
 });

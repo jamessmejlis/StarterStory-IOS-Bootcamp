@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const nextPath = `/onboarding1`;
 const loginPath = `/login`;
@@ -10,14 +10,14 @@ export default function Start() {
   return (
     <View style={styles.container}>
       <View style={styles.flexGrow} />
-      <View style={styles.kywBox}>
-        <Text style={styles.kywText}>AN</Text>
-      </View>
-      <Text style={styles.title}>App Name</Text>
-      <Text style={styles.subtitle}>A one liner for your app</Text>
+      <Image source={require('../assets/images/icon.png')} style={styles.logo} resizeMode="contain" />
+      <Text style={styles.title}>Anchor</Text>
+      <Text style={styles.subtitle}>Finally, an app that gets{"\n"}your attachment struggles</Text>
+      <Text style={styles.paragraph}>You know your patterns.{"\n"}You see yourself spiralling,{"\n"}shutting down, or criticizing again.</Text>
+      <Text style={styles.paragraph}>You're ready to break the cycle{"\n"}and learn what to do instead.</Text>
       <View style={styles.flexGrow} />
       <TouchableOpacity style={styles.button} onPress={() => router.push(nextPath)}>
-        <Text style={styles.buttonText}>Get Started</Text>
+        <Text style={styles.buttonText}>Let’s Start Healing</Text>
       </TouchableOpacity>
       <Pressable onPress={() => router.push(loginPath)}>
         <Text style={styles.signInText}>or Sign In here</Text>
@@ -28,14 +28,14 @@ export default function Start() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: '#fff' },
-  spacer: { height: 40 },
-  kywBox: { backgroundColor: '#7CFFB2', borderRadius: 32, paddingVertical: 24, paddingHorizontal: 36, marginBottom: 32, borderWidth: 1, borderColor: '#222' },
-  kywText: { fontSize: 32, fontWeight: 'bold', color: '#222', textAlign: 'center' },
-  title: { fontSize: 40, fontWeight: 'bold', marginBottom: 12, textAlign: 'center', color: '#111' },
-  subtitle: { fontSize: 24, color: '#111', marginBottom: 32, textAlign: 'center' },
-  flexGrow: { flex: 1 },
-  button: { backgroundColor: '#000', paddingVertical: 16, paddingHorizontal: 48, borderRadius: 20, marginBottom: 12, width: '100%' },
-  buttonText: { color: '#fff', fontSize: 28, fontWeight: 'bold', textAlign: 'center' },
-  signInText: { color: '#111', fontSize: 20, textAlign: 'center', textDecorationLine: 'underline', marginBottom: 24 },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 18, backgroundColor: '#fff' },
+  spacer: { height: 24 },
+  logo: { width: 90, height: 90, marginBottom: 24 },
+  title: { fontSize: 32, fontWeight: 'bold', marginBottom: 10, textAlign: 'center', color: '#111', fontFamily: 'SpaceMono' },
+  subtitle: { fontSize: 18, color: '#111', marginBottom: 18, textAlign: 'center', fontFamily: 'SpaceMono' },
+  paragraph: { fontSize: 15, color: '#111', marginBottom: 8, textAlign: 'center', fontFamily: 'SpaceMono' },
+  flexGrow: { flex: 0.5 },
+  button: { backgroundColor: '#000', paddingVertical: 14, paddingHorizontal: 32, borderRadius: 20, marginBottom: 8, width: '100%' },
+  buttonText: { color: '#fff', fontSize: 22, fontWeight: 'bold', textAlign: 'center', fontFamily: 'SpaceMono' },
+  signInText: { color: '#111', fontSize: 16, textAlign: 'center', textDecorationLine: 'underline', marginBottom: 18, fontFamily: 'SpaceMono' },
 });

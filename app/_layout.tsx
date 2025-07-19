@@ -41,33 +41,35 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={DefaultTheme}>
-      <Stack
-        screenOptions={{ headerShown: false }}
-      >
-        {isSignedIn ? (
-          <>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="+not-found" />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="index" />
-            <Stack.Screen name="onboarding1" />
-            <Stack.Screen name="onboarding2" />
-            <Stack.Screen name="onboarding3" />
-            <Stack.Screen name="onboardingPathos" />
-            <Stack.Screen name="onboardingEthos" />
-            <Stack.Screen name="onboardingLogos" />
-            <Stack.Screen name="personalization" />
-            <Stack.Screen name="personalizingscreen" />
-            <Stack.Screen name="signup" />
-            <Stack.Screen name="login" />
-            <Stack.Screen name="+not-found" />
-          </>
-        )}
-      </Stack>
+    <>
+      <ThemeProvider value={DefaultTheme}>
+        <Stack
+          screenOptions={{ headerShown: false }}
+        >
+          {isSignedIn ? (
+            <>
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen name="+not-found" />
+            </>
+          ) : (
+            <>
+              <Stack.Screen name="index" />
+              <Stack.Screen name="onboarding1" />
+              <Stack.Screen name="onboarding2" />
+              <Stack.Screen name="onboarding3" />
+              <Stack.Screen name="onboardingPathos" />
+              <Stack.Screen name="onboardingEthos" />
+              <Stack.Screen name="onboardingLogos" />
+              <Stack.Screen name="personalization" />
+              <Stack.Screen name="personalizingscreen" />
+              <Stack.Screen name="signup" />
+              <Stack.Screen name="login" />
+              <Stack.Screen name="+not-found" />
+            </>
+          )}
+        </Stack>
+      </ThemeProvider>
       <StatusBar style="auto" />
-    </ThemeProvider>
+    </>
   );
 }

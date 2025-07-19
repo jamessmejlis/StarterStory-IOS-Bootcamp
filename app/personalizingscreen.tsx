@@ -2,7 +2,7 @@ import { PersonalizationAnswers, personalizationAtom } from '@/lib/atoms';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSetAtom } from 'jotai';
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 
 const progressMessages = [
   'figuring out the first question to ask you',
@@ -66,9 +66,7 @@ export default function PersonalizingScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Personalizing</Text>
       <Text style={styles.subtitle}>your first experience</Text>
-      <View style={styles.kywBox}>
-        <Text style={styles.kywText}>AN</Text>
-      </View>
+      <Image source={require('../assets/images/icon.png')} style={styles.logo} resizeMode="contain" />
       <Text style={styles.progress}>{progress}% complete</Text>
       <Text style={styles.progressSub}>{progressMessages[messageIndex]}</Text>
       <View style={styles.button}>
@@ -82,8 +80,7 @@ const styles = StyleSheet.create({
   container: { flex:1, justifyContent:'center', alignItems:'center', padding:24, backgroundColor:'#fff' },
   title: { fontSize:40, fontWeight:'bold', marginBottom:0, textAlign:'center', color:'#111' },
   subtitle: { fontSize:28, color:'#111', marginBottom:32, textAlign:'center', fontWeight:'400' },
-  kywBox: { backgroundColor: '#7CFFB2', borderRadius: 32, paddingVertical: 24, paddingHorizontal: 36, marginVertical: 32, borderWidth: 1, borderColor: '#222' },
-  kywText: { fontSize: 32, fontWeight: 'bold', color: '#222', textAlign: 'center' },
+  logo: { width: 70, height: 70, marginVertical: 32 },
   progress: { fontSize: 28, color: '#ccc', marginTop: 32, marginBottom: 8, textAlign: 'center' },
   progressSub: { fontSize: 22, color: '#ccc', marginBottom: 32, textAlign: 'center' },
   button: { backgroundColor:'#000', paddingVertical:20, paddingHorizontal:48, borderRadius:32, marginTop:24, width:'100%', alignItems:'center', marginBottom:24 },
